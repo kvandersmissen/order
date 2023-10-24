@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.ResponseStatus;
 import org.jboss.resteasy.reactive.RestHeader;
+import security.Feature;
 import service.ItemService;
 import service.SecurityService;
 
@@ -34,7 +35,7 @@ public class ItemController {
     @POST
     @ResponseStatus(201)
     public Response createItem(@RestHeader String authorization, CreateItemDto createItemDto){
-        securityService.validateAuthorization(authorization,MANAGE_ITEMS);
+        securityService.validateAuthorization(authorization, MANAGE_ITEMS);
         return Response.status(201).entity(itemService.createItem(createItemDto)).build();
     }
 

@@ -23,6 +23,7 @@ public class CustomerMapper {
                 createCustomerDto.getPhoneNumber(),
                 createCustomerDto.getPassword(),
                 createCustomerDto.getRole());
+
     }
 
     public CustomerDto entityToDto(Customer customer) {
