@@ -1,5 +1,9 @@
 package domain.customer;
 
+import security.Feature;
+import security.UserRole;
+
+import java.util.Objects;
 import java.util.UUID;
 
 public class Customer {
@@ -11,13 +15,19 @@ public class Customer {
     private String address;
     private String phoneNumber;
 
-    public Customer(String firstname, String lastname, String emailAddress, String address, String phoneNumber) {
+    private String password;
+
+    private UserRole role;
+
+    public Customer(String firstname, String lastname, String emailAddress, String address, String phoneNumber, String password, UserRole role) {
         this.id = UUID.randomUUID().toString();
         this.firstname = firstname;
         this.lastname = lastname;
         this.emailAddress = emailAddress;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.role = role;
     }
 
     public void setFirstname(String firstname) {
@@ -62,5 +72,26 @@ public class Customer {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public boolean doesPasswordMatch(String password) {
+        return this.password.equals(password);
+    }
+
+    public boolean canHaveAccessTo(Feature feature) {
+        return role.containsFeature(feature);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(emailAddress, customer.emailAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(emailAddress);
     }
 }
