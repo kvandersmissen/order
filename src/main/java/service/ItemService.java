@@ -4,8 +4,9 @@ import domain.dto.CreateItemDto;
 import domain.dto.ItemDto;
 import domain.dto.UpdateItemDto;
 import domain.item.Item;
+import exceptions.NotFoundException;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.NotFoundException;
+
 import mapper.ItemMapper;
 import repository.ItemRepository;
 

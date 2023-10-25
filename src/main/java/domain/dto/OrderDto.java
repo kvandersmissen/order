@@ -3,37 +3,38 @@ package domain.dto;
 import domain.customer.Customer;
 import domain.order.ItemGroup;
 
+import java.util.List;
+
 public class OrderDto {
 
     private String id;
     private Customer customer;
 
-    private ItemGroup itemGroup;
+    private List<ItemGroup> itemGroup;
 
     public String getId() {
         return id;
     }
 
+    private double totalPrice;
+
     public Customer getCustomer() {
         return customer;
     }
 
-    public ItemGroup getItemGroup() {
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public List<ItemGroup> getItemGroup() {
         return itemGroup;
     }
 
-    public OrderDto setId(String id) {
+    public OrderDto(String id, Customer customer, List<ItemGroup> itemGroup, double totalPrice) {
         this.id = id;
-        return this;
-    }
-
-    public OrderDto setCustomer(Customer customer) {
         this.customer = customer;
-        return this;
+        this.itemGroup = itemGroup;
+        this.totalPrice = totalPrice;
     }
 
-    public OrderDto setItemGroup(ItemGroup itemGroup) {
-        this.itemGroup = itemGroup;
-        return this;
-    }
 }

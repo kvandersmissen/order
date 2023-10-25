@@ -1,6 +1,5 @@
 package repository;
 
-import domain.customer.Customer;
 import domain.item.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -18,17 +17,17 @@ public class ItemRepository {
         this.itemById = new HashMap<>();
     }
 
-    public Item createItem(Item item){
+    public Item createItem(Item item) {
 
-        itemById.put(item.getId(),item);
+        itemById.put(item.getId(), item);
         return item;
     }
 
-    public Collection<Item> getAllItems(){
+    public Collection<Item> getAllItems() {
         return itemById.values();
     }
 
-    public Optional<Item> getItemById(String id){
+    public Optional<Item> getItemById(String id) {
         return Optional.ofNullable(itemById.get(id));
     }
 

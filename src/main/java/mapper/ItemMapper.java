@@ -22,12 +22,12 @@ public class ItemMapper {
     }
 
     public ItemDto entityToDto(Item item) {
-        return new ItemDto()
-                .setId(item.getId())
-                .setName(item.getName())
-                .setDescription(item.getDescription())
-                .setAmount(item.getAmount())
-                .setPrice(item.getPrice());
+        return new ItemDto(
+                item.getId(),
+                item.getName(),
+                item.getDescription(),
+                item.getPrice(),
+                item.getAmount());
     }
 
 }

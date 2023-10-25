@@ -29,28 +29,11 @@ public class ItemDto {
         return amount;
     }
 
-    public ItemDto setId(String id) {
+    public ItemDto(String id, String name, String description, double price, int amount) {
         this.id = id;
-        return this;
-    }
-
-    public ItemDto setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public ItemDto setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    public ItemDto setPrice(double price) {
         this.price = price;
-        return this;
-    }
-
-    public ItemDto setAmount(int amount) {
         this.amount = amount;
-        return this;
     }
 }

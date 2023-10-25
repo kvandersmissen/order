@@ -27,13 +27,12 @@ public class CustomerMapper {
     }
 
     public CustomerDto entityToDto(Customer customer) {
-        return new CustomerDto()
-                .setId(customer.getId())
-                .setFirstname(customer.getFirstname())
-                .setLastname(customer.getLastname())
-                .setAddress(customer.getAddress())
-                .setPhoneNumber(customer.getPhoneNumber())
-                .setEmailAddress(customer.getEmailAddress())
-                ;
+        return new CustomerDto(
+                customer.getId(),
+                customer.getFirstname(),
+                customer.getLastname(),
+                customer.getAddress(),
+                customer.getPhoneNumber(),
+                customer.getEmailAddress());
     }
 }

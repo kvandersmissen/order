@@ -1,33 +1,27 @@
 package domain.dto;
 
 import domain.customer.Customer;
+import domain.item.Item;
 import domain.order.ItemGroup;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CreateOrderDto {
 
     private String customerId;
 
-    private ItemGroup itemGroup;
+    private List<CreateItemGroupDto> createItemGroupDto;
 
-    public ItemGroup getItemGroup() {
-        return itemGroup;
+    public List<CreateItemGroupDto> getCreateItemGroupDto() {
+        return createItemGroupDto;
     }
+
 
     public String getCustomerId() {
         return customerId;
     }
-
-    public CreateOrderDto setCustomerId(String customerId) {
-        this.customerId = customerId;
-        return this;
-    }
-
-    public CreateOrderDto setItemGroup(ItemGroup itemGroup) {
-        this.itemGroup = itemGroup;
-        return this;
-    }
-
 
 }

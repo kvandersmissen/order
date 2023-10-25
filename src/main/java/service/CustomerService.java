@@ -3,9 +3,8 @@ package service;
 import domain.customer.Customer;
 import domain.dto.CreateCustomerDto;
 import domain.dto.CustomerDto;
-import domain.item.Item;
+import exceptions.NotFoundException;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.NotFoundException;
 import mapper.CustomerMapper;
 import repository.CustomerRepository;
 

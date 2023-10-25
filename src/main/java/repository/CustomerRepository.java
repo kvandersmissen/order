@@ -1,7 +1,6 @@
 package repository;
 
 import domain.customer.Customer;
-import domain.item.Item;
 import jakarta.enterprise.context.ApplicationScoped;
 import security.UserRole;
 
@@ -19,25 +18,25 @@ public class CustomerRepository {
         this.customerById = new HashMap<>();
     }
 
-    public Customer createCustomer(Customer customer){
+    public Customer createCustomer(Customer customer) {
 
-        if (customerById.containsValue(customer)){
+        if (customerById.containsValue(customer)) {
             throw new IllegalArgumentException("Customer already exist.");
         }
 
-        customerById.put(customer.getId(),customer);
+        customerById.put(customer.getId(), customer);
         return customer;
     }
 
-    public Collection<Customer> getAllCustomers(){
+    public Collection<Customer> getAllCustomers() {
         return customerById.values().stream().filter(customer -> customer.getRole().equals(UserRole.CUSTOMER)).toList();
     }
 
-    public Optional<Customer> getCustomerByEmail(String email){
+    public Optional<Customer> getCustomerByEmail(String email) {
         return customerById.values().stream().filter(customer -> customer.getEmailAddress().equals(email)).findFirst();
     }
 
-    public Optional<Customer> getCustomerById(String id){
+    public Optional<Customer> getCustomerById(String id) {
         return Optional.ofNullable(customerById.get(id));
     }
 

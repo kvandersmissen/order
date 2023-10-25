@@ -33,33 +33,13 @@ public class CustomerDto {
         return phoneNumber;
     }
 
-    public CustomerDto setId(String id) {
+    public CustomerDto(String id, String firstname, String lastname, String emailAddress, String address, String phoneNumber) {
         this.id = id;
-        return this;
-    }
-
-    public CustomerDto setFirstname(String firstname) {
         this.firstname = firstname;
-        return this;
-    }
-
-    public CustomerDto setLastname(String lastname) {
         this.lastname = lastname;
-        return this;
-    }
-
-    public CustomerDto setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-        return this;
-    }
-
-    public CustomerDto setAddress(String address) {
         this.address = address;
-        return this;
+        this.phoneNumber = phoneNumber;
     }
 
-    public CustomerDto setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
 }

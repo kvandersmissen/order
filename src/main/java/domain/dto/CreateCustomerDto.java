@@ -42,38 +42,4 @@ public class CreateCustomerDto {
         return role;
     }
 
-    public CreateCustomerDto setFirstname(String firstname) {
-        this.firstname = firstname;
-        return this;
-    }
-
-    public CreateCustomerDto setLastname(String lastname) {
-        this.lastname = lastname;
-        return this;
-    }
-
-    public CreateCustomerDto setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-        return this;
-    }
-
-    public CreateCustomerDto setAddress(String address) {
-        this.address = address;
-        return this;
-    }
-
-    public CreateCustomerDto setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public CreateCustomerDto setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public CreateCustomerDto setRole(UserRole role) {
-        this.role = role;
-        return this;
-    }
 }

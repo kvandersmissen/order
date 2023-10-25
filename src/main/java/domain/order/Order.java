@@ -2,17 +2,17 @@ package domain.order;
 
 import domain.customer.Customer;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Order {
 
     private String id;
     private Customer customer;
-    //private Map<String, ItemGroup> orderById;
 
-    private ItemGroup itemGroup;
+    private List<ItemGroup> itemGroup;
 
-    public Order(Customer customer, ItemGroup itemGroup) {
+    public Order(Customer customer, List<ItemGroup> itemGroup) {
         this.id = UUID.randomUUID().toString();
         this.customer = customer;
         this.itemGroup = itemGroup;
@@ -26,7 +26,7 @@ public class Order {
         return customer;
     }
 
-    public ItemGroup getItemGroup() {
+    public List<ItemGroup> getItemGroup() {
         return itemGroup;
     }
 }

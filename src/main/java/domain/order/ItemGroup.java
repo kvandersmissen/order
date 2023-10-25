@@ -12,12 +12,13 @@ public class ItemGroup {
 
     private double price;
 
-    public ItemGroup(String id, int amount) {
-        this.id = id;
+    public ItemGroup(String id, int amount, LocalDate shippingDate, double price) {
+        setId(id);
         this.amount = amount;
-        this.shippingDate = LocalDate.now().plusDays(1);;
-        //this.price = price;
+        this.shippingDate = shippingDate;
+        this.price = price;
     }
+
 
     public String getId() {
         return id;
@@ -37,17 +38,5 @@ public class ItemGroup {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setShippingDate(LocalDate shippingDate) {
-        this.shippingDate = shippingDate;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }
