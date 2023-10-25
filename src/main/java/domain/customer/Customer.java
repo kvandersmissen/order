@@ -5,6 +5,7 @@ import security.UserRole;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class Customer {
 
@@ -14,19 +15,17 @@ public class Customer {
     private String emailAddress;
     private String address;
     private String phoneNumber;
-
     private String password;
-
     private UserRole role;
 
     public Customer(String firstname, String lastname, String emailAddress, String address, String phoneNumber, String password, UserRole role) {
         this.id = UUID.randomUUID().toString();
         this.firstname = firstname;
         this.lastname = lastname;
-        this.emailAddress = emailAddress;
-        this.address = address;
+        setEmailAddress(emailAddress);
+        setAddress(address);
         this.phoneNumber = phoneNumber;
-        this.password = password;
+        setPassword(password);
         this.role = role;
     }
 
@@ -38,16 +37,40 @@ public class Customer {
         this.lastname = lastname;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public void setAddress(String address) {
+        if (address == null || address.isEmpty()) {
+            throw new IllegalArgumentException("Please provide an address");
+        }
         this.address = address;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        if (!isValidEmail(emailAddress)) {
+            throw new IllegalArgumentException("Please provide a valid email adres");
+        }
+        this.emailAddress = emailAddress;
+    }
+
+    private boolean isValidEmail(String emailAddress) {
+        if (emailAddress == null || emailAddress.isEmpty()){
+            return false;
+        }
+        String emailRegexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        return Pattern.compile(emailRegexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
+
+    public void setPassword(String password) {
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Please provide a password");
+        }
+        this.password = password;
     }
 
     public String getId() {
@@ -73,6 +96,7 @@ public class Customer {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+    public UserRole getRole() {return role;}
 
     public boolean doesPasswordMatch(String password) {
         return this.password.equals(password);
@@ -94,4 +118,5 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(emailAddress);
     }
+
 }

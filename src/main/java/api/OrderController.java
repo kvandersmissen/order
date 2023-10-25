@@ -29,7 +29,7 @@ public class OrderController {
     }
 
     @POST
-    @ResponseStatus(201)
+    @ResponseStatus(202)
     public Response createOrder(@RestHeader String authorization, CreateOrderDto createOrderDto){
         securityService.validateAuthorization(authorization, ORDER_ITEMS);
         return Response.status(202).entity(orderService.createOrder(createOrderDto)).build();

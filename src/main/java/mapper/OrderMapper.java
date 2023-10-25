@@ -16,7 +16,8 @@ public class OrderMapper {
     public OrderDto entityToDto(Order order) {
         return new OrderDto()
                 .setId(order.getId())
-                .setCustomer(order.getCustomer());
+                .setCustomer(order.getCustomer())
+                .setItemGroup(order.getItemGroup());
     }
 
 }

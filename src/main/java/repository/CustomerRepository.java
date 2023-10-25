@@ -3,6 +3,7 @@ package repository;
 import domain.customer.Customer;
 import domain.item.Item;
 import jakarta.enterprise.context.ApplicationScoped;
+import security.UserRole;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class CustomerRepository {
     }
 
     public Collection<Customer> getAllCustomers(){
-        return customerById.values();
+        return customerById.values().stream().filter(customer -> customer.getRole().equals(UserRole.CUSTOMER)).toList();
     }
 
     public Optional<Customer> getCustomerByEmail(String email){
