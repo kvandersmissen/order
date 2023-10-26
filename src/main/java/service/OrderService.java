@@ -21,8 +21,6 @@ import java.util.List;
 
 @ApplicationScoped
 public class OrderService {
-    public static final int ONE_DAY = 1;
-    public static final int SEVEN_DAYS = 7;
     private final Logger logger = Logger.getLogger(OrderService.class);
     private OrderRepository orderRepository;
     private CustomerRepository customerRepository;
@@ -44,29 +42,19 @@ public class OrderService {
 
         List<ItemGroup> itemGroups = createOrderDto.getCreateItemGroupDto()
                 .stream()
-//                .map(CreateItemGroupDto -> itemGroupMapper.mapToEntity(CreateItemGroupDto))
                 .map(CreateItemGroupDto -> creatItemGroupRecord(CreateItemGroupDto))
                 .toList();
 
-         Order order = new Order(customer, itemGroups);
+        Order order = new Order(customer, itemGroups);
 
-         return orderMapper.entityToDto(orderRepository.createOrder(order));
+        return orderMapper.entityToDto(orderRepository.createOrder(order));
 
     }
 
     private ItemGroup creatItemGroupRecord(CreateItemGroupDto createItemGroupDto) {
 
         Item itemToFind = itemRepository.getItemById(createItemGroupDto.getId()).orElseThrow(() -> new NotFoundException("No item found for " + createItemGroupDto.getId()));
-
-        LocalDate shippingDate;
-
-        if(itemToFind.getAmount() > 0){
-            shippingDate = LocalDate.now().plusDays(ONE_DAY);
-        }else{
-            shippingDate = LocalDate.now().plusDays(SEVEN_DAYS);
-        }
-
-        return new ItemGroup(createItemGroupDto.getId(),createItemGroupDto.getAmount(), shippingDate, itemToFind.getPrice());
+        return new ItemGroup(createItemGroupDto.getId(), createItemGroupDto.getAmount(), itemToFind.calculateShippingDate(), itemToFind.getPrice());
     }
 
 }

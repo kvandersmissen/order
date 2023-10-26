@@ -1,8 +1,12 @@
 package domain.item;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class Item {
+
+    public static final int ONE_DAY = 1;
+    public static final int SEVEN_DAYS = 7;
 
     private String id;
     private String name;
@@ -68,6 +72,18 @@ public class Item {
             this.amount = amount;
         }
         return this;
+    }
+
+    public LocalDate calculateShippingDate(){
+        LocalDate shippingDate;
+
+        if(getAmount() > 0){
+            shippingDate = LocalDate.now().plusDays(ONE_DAY);
+        }else{
+            shippingDate = LocalDate.now().plusDays(SEVEN_DAYS);
+        }
+
+        return shippingDate;
     }
 
 }
